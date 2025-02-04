@@ -9,7 +9,7 @@ function convert_to_html($content)
     $notiz = !empty($content['extra-notiz']) ? "<span>" . htmlspecialchars($content['extra-notiz']) . "</span>" : '';
     // Mannschaftsname formatieren
     $mannschaftsname = ucfirst(str_replace("w", " | Weiblich", str_replace("H", "Herren ", $mannschaft)));
-    $hallen = array("Hvp", "MPG", "usw.");
+    $hallen = array("HvP", "MPG", "usw.");
     // Trainingszeiten formatieren
     $date = [];
     if (!empty($content['trainingszeiten']) && is_array($content['trainingszeiten'])) {
@@ -18,9 +18,9 @@ function convert_to_html($content)
             $line .= htmlspecialchars($training['tag'] ?? 'Unbekannt') . " | ";
             $line .= htmlspecialchars($training['startzeit'] ?? '??:??') . " - " . htmlspecialchars($training['endzeit'] ?? '??:??');
             $line .= "</strong>";
-            $halle = "";
-            if (!empty($training['hallenid'])) {
-                $halle .= $hallen[$training['hallenid']];
+            $halle = "Halle nicht angegeben";
+            if (isset($training['hallenid']) && array_key_exists($training['hallenid'], $hallen)) {
+                $halle = $hallen[$training['hallenid']];
             }
             $line .= " | <a href='https://djksbm.org/hallen/{$halle}'; style='color: #3baa19';>{$halle}</a>";
             if (!empty($training['extra_notiz'])) {

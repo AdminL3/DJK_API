@@ -2,8 +2,8 @@ import requests
 import config
 import json
 
-base = "http://localhost/plugin-test/"
 base = "https://djksbm.org/hauptverein-neu/"
+base = "http://localhost/plugin-test/"
 url = f"{base}wp-json/djk-api/update"
 
 token = config.WP_TOKEN
