@@ -14,16 +14,17 @@ function convert_to_html($content)
     $date = [];
     if (!empty($content['trainingszeiten']) && is_array($content['trainingszeiten'])) {
         foreach ($content['trainingszeiten'] as $training) {
-            $line = "<strong>" . htmlspecialchars($training['tag'] ?? 'Unbekannt') . "</strong> | ";
+            $line = "<strong>";
+            $line .= htmlspecialchars($training['tag'] ?? 'Unbekannt') . " | ";
             $line .= htmlspecialchars($training['startzeit'] ?? '??:??') . " - " . htmlspecialchars($training['endzeit'] ?? '??:??');
-            $hallen_id = $content['hallen_id'] ?? null;
-            if ($hallen_id !== null && array_key_exists($hallen_id, $hallen)) {
-                $line .= " | {$hallen[$hallen_id]}";
-            } else {
-                $line .= " | Unbekannte Halle";
+            $line .= "</strong>";
+            $halle = "";
+            if (!empty($training['hallenid'])) {
+                $halle .= $hallen[$training['hallenid']];
             }
+            $line .= " | <a href='https://djksbm.org/hallen/{$halle}'; style='color: #3baa19';>{$halle}</a>";
             if (!empty($training['extra_notiz'])) {
-                $line .= " |" . htmlspecialchars($training['extra_notiz']);
+                $line .= " | " . htmlspecialchars($training['extra_notiz']);
             }
             $date[] = $line;
         }
