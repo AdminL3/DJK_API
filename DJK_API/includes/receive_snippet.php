@@ -9,17 +9,6 @@ add_action('rest_api_init', function () {
         }
     ));
 });
-add_action('rest_api_init', function () {
-    register_rest_route('djk-api', '/delete', array(
-        'methods' => 'POST',
-        'callback' => 'delete_snippet',
-        'permission_callback' => function () {
-            return true;
-        }
-    ));
-});
-
-
 
 function update_snippet($request)
 {

@@ -1,35 +1,15 @@
-import requests
-import config
 import json
+import requests
 
-base = "https://djksbm.org/hauptverein-neu/"
-base = "http://localhost/plugin-test/"
-url = f"{base}wp-json/djk-api/update"
-
-token = config.WP_TOKEN
-
-with open("mock.json", "r", encoding="utf-8") as f:
-    content = json.load(f)
-
-
-headers = {
-    "Authorization": f"Bearer {token}",
-    "Content-Type": "application/json"
-}
-
-data = {
-    'content': content
-}
+url = "http://localhost/plugin-test/wp-json/djk_api/get"
+data = {'name': "U18"}
 
 try:
-    response = requests.post(
-        url,
-        json=data,
-        headers=headers
-    )
+    response = requests.post(url, json=data)
     response.raise_for_status()
-    print(f"Snippet for team {content["name"]} created/updated successfully.")
-    print(response.json())
-except requests.exceptions.RequestException as e:
-    print(f"An error occurred while getting snippet for team {content["name"]}: {e}")
-    print(response.json())
+except Exception as e:
+    print(f"An error occurred: {e}")
+print(response.json())
+if response.status_code == 200:
+    with open("Testing.json", "w") as file:
+        json.dump(response.json(), file, indent=4)
