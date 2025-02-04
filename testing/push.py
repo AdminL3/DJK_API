@@ -28,9 +28,8 @@ try:
         headers=headers
     )
     response.raise_for_status()
-    print(f"Snippet for team {snippet_id} created/updated successfully.")
+    print(f"Snippet for team {data["content"]["name"]} created/updated successfully.")
     print(response.json())
 except requests.exceptions.RequestException as e:
-    print(f"An error occurred while deleting snippet for team {
-          snippet_id}: {e}")
+    print(f"An error occurred while updating snippet for team {data["content"]["name"]}: {e}")
     print(response.json())

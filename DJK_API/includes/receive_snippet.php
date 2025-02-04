@@ -43,23 +43,3 @@ function update_snippet($request)
 
     return array('status' => 'success', 'message' => 'Content updated successfully');
 }
-
-
-function delete_snippet($request)
-{
-    $headers = getallheaders();
-    $provided_token = isset($headers['Authorization']) ? str_replace('Bearer ', '', $headers['Authorization']) : '';
-
-    $stored_token = get_option('wp_api_token', '');
-
-    if ($provided_token !== $stored_token) {
-        return new WP_REST_Response(array('status' => 'error', 'message' => 'Unauthorized'), 401);
-    }
-
-    $params = $request->get_params();
-    $snippet_id = $params['snippet_id'];
-
-    delete_option("snippet_{$snippet_id}");
-
-    return array('status' => 'success', 'message' => 'Content deleted successfully');
-}

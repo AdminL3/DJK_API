@@ -23,7 +23,8 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 require_once plugin_dir_path( __FILE__ ) . 'includes/menu.php';
 require_once plugin_dir_path( __FILE__ ) . 'includes/settings.php';
-require_once plugin_dir_path( __FILE__ ) . 'includes/render.php';
+require_once plugin_dir_path( __FILE__ ) . 'includes/render_snippet.php';
+require_once plugin_dir_path( __FILE__ ) . 'includes/receive_snippet.php';
 require_once plugin_dir_path( __FILE__ ) . 'includes/api.php';
 
 

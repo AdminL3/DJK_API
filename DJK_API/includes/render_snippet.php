@@ -6,19 +6,24 @@ function convert_to_html($content)
     $jahrgang = is_array($content['jahrgänge'] ?? null) ? implode(', ', $content['jahrgänge']) : 'Keine Angabe';
     $geschlecht = is_array($content['geschlecht'] ?? null) ? implode(', ', $content['geschlecht']) : 'Keine Angabe';
     $trainer = is_array($content['vornamen_trainer'] ?? null) ? implode(', ', $content['vornamen_trainer']) : 'Keine Trainer vorhanden';
-    
+    $notiz = !empty($content['extra-notiz']) ? "<span>" . htmlspecialchars($content['extra-notiz']) . "</span>" : '';
     // Mannschaftsname formatieren
     $mannschaftsname = ucfirst(str_replace("w", " | Weiblich", str_replace("H", "Herren ", $mannschaft)));
-    
+    $hallen = array("Hvp", "MPG", "usw.");
     // Trainingszeiten formatieren
     $date = [];
     if (!empty($content['trainingszeiten']) && is_array($content['trainingszeiten'])) {
         foreach ($content['trainingszeiten'] as $training) {
-            $line = "<strong>" . htmlspecialchars($training['tag'] ?? 'Unbekannt') . ":</strong> ";
+            $line = "<strong>" . htmlspecialchars($training['tag'] ?? 'Unbekannt') . "</strong> | ";
             $line .= htmlspecialchars($training['startzeit'] ?? '??:??') . " - " . htmlspecialchars($training['endzeit'] ?? '??:??');
-            $line .= " (Halle " . htmlspecialchars($training['hallenid'] ?? '??') . ")";
+            $hallen_id = $content['hallen_id'] ?? null;
+            if ($hallen_id !== null && array_key_exists($hallen_id, $hallen)) {
+                $line .= " | {$hallen[$hallen_id]}";
+            } else {
+                $line .= " | Unbekannte Halle";
+            }
             if (!empty($training['extra_notiz'])) {
-                $line .= " - <em>" . htmlspecialchars($training['extra_notiz']) . "</em>";
+                $line .= " |" . htmlspecialchars($training['extra_notiz']);
             }
             $date[] = $line;
         }
@@ -31,10 +36,7 @@ function convert_to_html($content)
     $html .= "<span style='color: #adadad;'>{$jahrgang} | {$geschlecht}</span><br>";
     $html .= "Trainer:<strong> {$trainer}</strong><br><br>";
     $html .= implode("<br>", $date) . "<br>";
-    
-    if ($content["extra-notiz"] != "") {
-        $html .= $content["extra-notiz"];
-    }
+    $html .= $notiz;
     
     return $html;
 }

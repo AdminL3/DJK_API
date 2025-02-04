@@ -31,5 +31,5 @@ try:
     print(f"Snippet for team {content["name"]} created/updated successfully.")
     print(response.json())
 except requests.exceptions.RequestException as e:
-    print(f"An error occurred while deleting snippet for team {content["name"]}: {e}")
+    print(f"An error occurred while getting snippet for team {content["name"]}: {e}")
     print(response.json())
