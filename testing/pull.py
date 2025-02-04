@@ -8,8 +8,6 @@ url = f"{base}wp-json/djk-api/update"
 
 token = config.WP_TOKEN
 
-snippet_id = "test"
-
 with open("mock.json", "r", encoding="utf-8") as f:
     content = json.load(f)
 
@@ -20,7 +18,6 @@ headers = {
 }
 
 data = {
-    'snippet_id': snippet_id,
     'content': content
 }
 
