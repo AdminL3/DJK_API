@@ -47,7 +47,8 @@ function render_snippet($atts) {
     $snippet_id = $atts['id'];
     // get from database
     $content = get_option("snippet_{$snippet_id}", "{$snippet_id}");
-    return $content;
+
+    return convert_to_html($content);
 }
 
 add_shortcode('snippet', 'render_snippet');
