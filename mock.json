@@ -17,14 +17,14 @@
             "tag": "Mittwoch",
             "startzeit": "18:30",
             "endzeit": "20:30",
-            "hallenid": "1",
+            "hallenid": "0",
             "extra_notiz": "Nur U18/1"
         },
         {
             "tag": "Freitag",
             "startzeit": "18:30",
             "endzeit": "20:00",
-            "hallenid": "2",
+            "hallenid": "1",
             "extra_notiz": "Anfängertraining"
         }
     ],
