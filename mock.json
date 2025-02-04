@@ -1,0 +1,32 @@
+{
+    "name":"U18",
+    "geschlecht": [
+        "Männlich",
+        "Weiblich"
+    ],
+    "jahrgänge": [
+        "2007",
+        "2008"
+    ],
+    "vornamen_trainer": [
+        "Matthias",
+        "Walid"
+    ],
+    "trainingszeiten": [
+        {
+            "tag": "Mittwoch",
+            "startzeit": "18:30",
+            "endzeit": "20:30",
+            "hallenid": "1",
+            "extra_notiz": "Nur U18/1"
+        },
+        {
+            "tag": "Freitag",
+            "startzeit": "18:30",
+            "endzeit": "20:00",
+            "hallenid": "2",
+            "extra_notiz": "Anfängertraining"
+        }
+    ],
+    "extra_notiz": "z.b. Probetraining nur nach Absprache"
+}
