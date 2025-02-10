@@ -6,7 +6,7 @@ function convert_to_html($content)
     $jahrgang = is_array($content['jahrgänge'] ?? null) ? implode(', ', $content['jahrgänge']) : 'Keine Angabe';
     $geschlecht = is_array($content['geschlecht'] ?? null) ? implode(', ', $content['geschlecht']) : 'Keine Angabe';
     $trainer = is_array($content['vornamen_trainer'] ?? null) ? implode(', ', $content['vornamen_trainer']) : 'Keine Trainer vorhanden';
-    $notiz = !empty($content['extra-notiz']) ? "<span>" . htmlspecialchars($content['extra-notiz']) . "</span>" : '';
+    $notiz = !empty($content['extra_notiz']) ? "<span style='color: #adadad;'>" . htmlspecialchars($content['extra_notiz']) . "</span>" : '';
     // Mannschaftsname formatieren
     $mannschaftsname = ucfirst(str_replace("w", " | Weiblich", str_replace("H", "Herren ", $mannschaft)));
     $hallen = array("HvP", "MPG", "usw.");
