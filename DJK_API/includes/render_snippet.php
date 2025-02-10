@@ -9,7 +9,7 @@ function convert_to_html($content)
     $notiz = !empty($content['extra_notiz']) ? "<span style='color: #adadad;'>" . htmlspecialchars($content['extra_notiz']) . "</span>" : '';
     // Mannschaftsname formatieren
     $mannschaftsname = ucfirst(str_replace("w", " | Weiblich", str_replace("H", "Herren ", $mannschaft)));
-    $hallen = array("HvP", "MPG", "usw.");
+    $hallen = array("Peslmüller", "Guardini", "FvE", "HvP", "usw.");
     // Trainingszeiten formatieren
     $date = [];
     if (!empty($content['trainingszeiten']) && is_array($content['trainingszeiten'])) {
