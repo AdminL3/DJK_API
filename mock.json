@@ -1,32 +1,23 @@
 {
-    "name":"U18",
-    "geschlecht": [
-        "Männlich",
-        "Weiblich"
-    ],
-    "jahrgänge": [
-        "2007",
-        "2008"
-    ],
-    "vornamen_trainer": [
-        "Matthias",
-        "Walid"
-    ],
-    "trainingszeiten": [
-        {
-            "tag": "Mittwoch",
-            "startzeit": "18:30",
-            "endzeit": "20:30",
-            "hallenid": "0",
-            "extra_notiz": "Nur U18/1"
-        },
-        {
-            "tag": "Freitag",
-            "startzeit": "18:30",
-            "endzeit": "20:00",
-            "hallenid": "1",
-            "extra_notiz": "Anfängertraining"
-        }
-    ],
-    "extra_notiz": "z.b. Probetraining nur nach Absprache"
+  "name": "UWH Test Group2",
+  "geschlecht": "Gemischt",
+  "beschreibung": "This is a test!",
+  "jahrgänge": "2002 - 2005",
+  "trainingszeiten": [
+    {
+      "tag": "Montag",
+      "startzeit": "20:00",
+      "endzeit": "20:20",
+      "hallenid": 2,
+      "extra_notiz": ""
+    },
+    {
+      "tag": "Montag",
+      "startzeit": "00:00",
+      "endzeit": "00:10",
+      "hallenid": 1,
+      "extra_notiz": ""
+    }
+  ],
+  "vornamen_trainer": ["Coach", "Assistant Coach"]
 }
