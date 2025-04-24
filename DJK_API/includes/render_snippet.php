@@ -4,10 +4,8 @@ function convert_to_html($content)
 {
     $mannschaft = htmlspecialchars($content['name'] ?? 'Unbekannt');
     $notiz = !empty($content['extra_notiz']) ? "<span style='color: #adadad;'>" . htmlspecialchars($content['extra_notiz']) . "</span>" : '';
-    // Mannschaftsname formatieren
-    $mannschaftsname = ucfirst(str_replace("w", " | Weiblich", str_replace("H", "Herren ", $mannschaft)));
+    
     $hallen = array("Peslmüller", "Guardini", "FvE", "HvP", "usw.");
-    // Trainingszeiten formatieren
     $date = [];
     if (!empty($content['trainingszeiten']) && is_array($content['trainingszeiten'])) {
         foreach ($content['trainingszeiten'] as $training) {
@@ -32,7 +30,7 @@ function convert_to_html($content)
     $trainer = htmlspecialchars(implode(', ', $content['vornamen_trainer']));
     $jahrgang = empty($content['jahrgänge']) ? '' : htmlspecialchars($content['jahrgänge'] . " | ");
     
-    $html = "<h2 style='color: #3baa19;'>{$mannschaftsname}</h2>";
+    $html = "<h2 style='color: #3baa19;'>{$mannschaft}</h2>";
     $html .= "<span style='color: #adadad;'>{$jahrgang}{$geschlecht}</span><br>";
     $html .= "Trainer:<strong> {$trainer}</strong><br><br>";
     $html .= implode("<br>", $date) . "<br>";
