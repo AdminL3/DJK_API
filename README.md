@@ -25,22 +25,8 @@ pip install -r requirements.txt
 - And your page URL in the script
 - Run the script
 
-##### HTML/Javascript:
-
-- Look at the specified Example
-
-- Use Wordpress snippet on your wordpress page:
-
-[snippet id="your-specified-id"]
-
 ### 3. Use the Wordpress Snippet
 
 - Use Wordpress snippet on your wordpress page:
 
 [snippet id="your-specified-id"]
-
----
-
-Features to be added:
-
-- [ ] Snippet Previews
