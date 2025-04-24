@@ -24,12 +24,78 @@ input[type="text"] {
 }
 
 input[type="submit"] {
-    background-color: #0073aa;
+    background-color: #018c32;
     color: #fff;
     border: none;
     cursor: pointer;
 }
 
 input[type="submit"]:hover {
-    background-color: #005177;
+    background-color: #018c32;
+}
+/* Table styling */
+table {
+    border-collapse: collapse;
+    width: 100%;
+    margin: 20px 0;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
+}
+
+th {
+    background-color: #018c32;
+    color: white;
+    text-align: left;
+    padding: 12px;
+}
+
+td {
+    border: 1px solid #ddd;
+    padding: 12px;
+    vertical-align: top;
+}
+
+tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
+tr:hover {
+    background-color: #85ff9947;
+}
+
+/* Style for JSON output */
+pre {
+    background-color: #f7f7f7;
+    border: 1px solid #e1e1e8;
+    border-radius: 4px;
+    padding: 10px;
+    overflow-x: auto;
+    max-height: 300px;
+    font-family: Consolas, Monaco, 'Andale Mono', monospace;
+    font-size: 13px;
+    line-height: 1.4;
+}
+
+/* Snippet ID column */
+td:first-child {
+    font-weight: bold;
+    white-space: nowrap;
+}
+
+/* Team name column */
+td:nth-child(2) {
+    font-weight: 500;
+    color: #018c32;
+}
+
+/* Trainers column */
+td:nth-child(3) {
+    font-style: italic;
+}
+
+/* Make the table responsive */
+@media screen and (max-width: 768px) {
+    table {
+        display: block;
+        overflow-x: auto;
+    }
 }
