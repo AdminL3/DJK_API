@@ -28,7 +28,7 @@ function update_snippet($request)
         return new WP_REST_Response(array('status' => 'error', 'message' => 'Content name is missing'), 400);
     }
     
-    update_option("snippet_{$content['name']}", $content);
+    update_option("snippet_{$content['id']}", $content);
 
     return array('status' => 'success', 'message' => 'Content updated successfully');
 }

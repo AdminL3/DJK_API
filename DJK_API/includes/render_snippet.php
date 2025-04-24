@@ -50,7 +50,11 @@ function render_snippet($atts) {
     // get from database
     $content = get_option("snippet_{$snippet_id}", "{$snippet_id}");
 
-    return convert_to_html($content);
+    if (is_array($content)) {
+        return convert_to_html($content);
+    } else {
+        return "";
+    }
 }
 
 add_shortcode('snippet', 'render_snippet');
