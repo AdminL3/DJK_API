@@ -51,12 +51,13 @@ function display_snippets_table() {
     global $wpdb;
     $results = $wpdb->get_results("SELECT option_name, option_value FROM {$wpdb->options} WHERE option_name LIKE 'snippet_%'");
 
+    echo '<br><hr>';
+    
     if (empty($results)) {
         echo '<p>No snippet options found in the database.</p>';
         return;
     }
     
-    echo '<br><hr>';
     echo '<h2>Snippet Options</h2>';
     echo '<table>';
     echo '<tr>
@@ -77,31 +78,26 @@ function display_snippets_table() {
         echo '<tr>';
         echo '<td>' . esc_html($snippet_id) . '</td>';
         
-        if (is_array($value)) {
-            // Display name in its own column
-            echo '<td>' . esc_html($value['name'] ?? 'N/A') . '</td>';
-            
-            // Display trainers in their own column
-            if (!empty($value['vornamen_trainer']) && is_array($value['vornamen_trainer'])) {
-                echo '<td>' . esc_html(implode(', ', $value['vornamen_trainer'])) . '</td>';
-            } else {
-                echo '<td>No trainers listed</td>';
-            }
-            
-            // Add Delete button
-            echo '<td>
-                <form method="post" action="" onsubmit="return confirm(\'Are you sure you want to delete this snippet?\');">
-                    <input type="hidden" name="snippet_id" value="' . esc_attr($snippet_id) . '">
-                    <input type="submit" name="delete_snippet" value="Delete" class="button-delete">
-                </form>
-            </td>';
-            
-            // Display full JSON data in the last column
-            echo '<td><pre>' . esc_html(json_encode($value, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE)) . '</pre></td>';
+        // Display name in its own column
+        echo '<td>' . esc_html($value['name'] ?? 'N/A') . '</td>';
+        
+        // Display trainers in their own column
+        if (!empty($value['vornamen_trainer']) && is_array($value['vornamen_trainer'])) {
+            echo '<td>' . esc_html(implode(', ', $value['vornamen_trainer'])) . '</td>';
         } else {
-            // Handle non-array values
-            echo '<td colspan="4">Invalid data format</td>';
+            echo '<td>No trainers listed</td>';
         }
+        
+        // Add Delete button
+        echo '<td>
+            <form method="post" action="" onsubmit="return confirm(\'Are you sure you want to delete this snippet?\');">
+            <input type="hidden" name="snippet_id" value="' . esc_attr($snippet_id) . '">
+            <input type="submit" name="delete_snippet" value="Delete" class="button-delete">
+            </form>
+        </td>';
+        
+        // Display full JSON data in the last column
+        echo '<td><pre>' . esc_html(json_encode($value, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE)) . '</pre></td>';
         
         echo '</tr>';
     }
