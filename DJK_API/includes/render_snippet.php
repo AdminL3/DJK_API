@@ -4,9 +4,11 @@ function convert_to_html($content)
 {
     $mannschaft = htmlspecialchars($content['name'] ?? 'Unbekannt');
     $notiz = !empty($content['extra_notiz']) ? "<span style='color: #adadad;'>" . htmlspecialchars($content['extra_notiz']) . "</span>" : '';
-    
-    $hallen = array("Peslmüller", "Guardini", "FvE", "HvP", "usw.");
-    $date = [];
+    $hallen = get_option("snippet_hallen", [])['hallen'] ?? [];
+    $hallen_namen = array_map(function($halle) {
+        return $halle['name'] ?? 'Unbekannt';
+    }, $hallen);
+    // return json_encode($content['trainingszeiten']);
     if (!empty($content['trainingszeiten']) && is_array($content['trainingszeiten'])) {
         foreach ($content['trainingszeiten'] as $training) {
             $line = "<strong>";
@@ -14,8 +16,8 @@ function convert_to_html($content)
             $line .= htmlspecialchars($training['startzeit'] ?? '??:??') . " - " . htmlspecialchars($training['endzeit'] ?? '??:??');
             $line .= "</strong>";
             $halle = "Halle nicht angegeben";
-            if (isset($training['hallenid']) && array_key_exists($training['hallenid'], $hallen)) {
-                $halle = $hallen[$training['hallenid']];
+            if (isset($training['hallenid']) && array_key_exists($training['hallenid'], $hallen_namen)) {
+                $halle = $hallen_namen[$training['hallenid']];
             }
             $line .= " | <a href='https://djksbm.org/hallen/{$halle}'; style='color: #3baa19';>{$halle}</a>";
             if (!empty($training['extra_notiz'])) {

@@ -23,12 +23,15 @@ function update_snippet($request)
 
     $params = $request->get_params();
     $content = $params['content'];
-
-    if (!isset($content['name'])) {
-        return new WP_REST_Response(array('status' => 'error', 'message' => 'Content name is missing'), 400);
-    }
     
-    update_option("snippet_{$content['id']}", $content);
-
-    return array('status' => 'success', 'message' => 'Content updated successfully');
+    if (!empty($content['id'])) {
+        if($content['action'] == 'delete') {
+            delete_option("snippet_{$content['id']}");
+            return array('status' => 'success', 'message' => 'Snippet deleted!');
+        }
+        update_option("snippet_{$content['id']}", $content);
+        return array('status' => 'success', 'message' => 'Content received!');
+    } else {
+        return new WP_REST_Response(array('status' => 'error', 'message' => 'Invalid content'), 400);
+    }
 }
