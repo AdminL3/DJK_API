@@ -3,3 +3,4 @@ config.py
 djk_api.zip
 /testing/__pycache__
 /testing/config.py
+/.vscode
