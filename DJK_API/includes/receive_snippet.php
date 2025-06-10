@@ -23,9 +23,9 @@ function update_snippet($request)
 
     $params = $request->get_params();
     $content = $params['content'];
-    
+
     if (!empty($content['id'])) {
-        if($content['action'] == 'delete') {
+        if ($content['action'] == 'delete') {
             delete_option("snippet_{$content['id']}");
             return array('status' => 'success', 'message' => 'Snippet deleted!');
         }
