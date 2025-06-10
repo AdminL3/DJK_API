@@ -82,6 +82,14 @@ function render_hallen_snippet($content)
         $html .= "<strong id='{$name}'>{$name}</strong><br>";
         $html .= "{$adresse}<br><br>";
         $html .= "<span style='color: #adadad;'>" . htmlspecialchars($halle['description'] ?? '') . "</span><br>";
+        $query = urlencode($adresse);
+        $html .= '<iframe 
+            src="https://maps.google.com/maps?q=' . $query . '&t=&z=15&ie=UTF8&iwloc=&output=embed"
+            width="600" 
+            height="450" 
+            style="border:0;" 
+            allowfullscreen="" 
+            loading="lazy"></iframe>';
         if (!empty($images) && is_array($images)) {
             $html .= "<div style='display: flex; flex-wrap: wrap; gap: 10px;'>";
             foreach ($images as $image) {
